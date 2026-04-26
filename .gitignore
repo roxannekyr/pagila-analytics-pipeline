@@ -1,0 +1,70 @@
+# ==========================================
+# Python & Virtual Environments
+# ==========================================
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.tox/
+coverage.xml
+htmlcov/
+
+# ==========================================
+# Jupyter & Exploration
+# ==========================================
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+jupyter_lab/
+
+# ==========================================
+# Google Cloud & BigQuery Secrets (CRITICAL)
+# ==========================================
+# NEVER commit GCP Service Account keys!
+*key.json
+*service_account*.json
+*sa*.json
+*gcp*.json
+.gcloud/
+application_default_credentials.json
+
+# ==========================================
+# Local Data & Analytics Assets
+# ==========================================
+# Ignore large data files to prevent Git bloating
+data/
+*.csv
+*.tsv
+*.parquet
+*.avro
+*.jsonl
+# Explicitly keep NLTK out
+nltk_data/
+
+# ==========================================
+# Environment Variables & Configs
+# ==========================================
+.env
+.env.*
+*.env
+local_settings.py
+profiles.yml      # Usually contains dbt data warehouse credentials
+
+# ==========================================
+# Transformation (dbt - Data Build Tool)
+# ==========================================
+# If you use dbt for BQ staging/reporting, ignore its build folders
+target/
+dbt_packages/
+dbt_modules/
+logs/
+
+# ==========================================
+# IDE & OS Specifics
+# ==========================================
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
