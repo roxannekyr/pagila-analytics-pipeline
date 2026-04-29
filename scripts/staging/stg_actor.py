@@ -21,27 +21,15 @@ print('Libraries imported successfully')
 # Set the environment variable for Google Cloud credentials
 # Place the path in which the .json file is located.
 
-# Example (if .json is located in the same directory with the notebook)
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "at-arch-416714-6f9900ec7.json"
-
-# -- YOUR CODE GOES BELOW THIS LINE
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\roxan\AppData\Roaming\gcloud\application_default_credentials.json"
-# -- YOUR CODE GOES ABOVE THIS LINE
-
-
 # In[3]:
 
 
 # Set your Google Cloud project ID and BigQuery dataset details
 
-# -- YOUR CODE GOES BELOW THIS
-
 project_id = 'project-401f4646-3663-4125-aaa' # Edit with your project id
 dataset_id = 'staging_db' # Modify the necessary schema name: staging_db, reporting_db etc.
 table_id = 'stg_actor' # Modify the necessary table name: stg_customer, stg_city etc.
-
-# -- YOUR CODE GOES ABOVE THIS LINE
-
 
 # # SQL Query
 
@@ -50,8 +38,6 @@ table_id = 'stg_actor' # Modify the necessary table name: stg_customer, stg_city
 
 # Create a BigQuery client
 client = bigquery.Client(project=project_id)
-
-# -- YOUR CODE GOES BELOW THIS LINE
 
 # Define your SQL query here
 query = """
@@ -72,14 +58,11 @@ with base as (
   select * from final
 """
 
-# -- YOUR CODE GOES ABOVE THIS LINE
-
 # Execute the query and store the result in a dataframe
 df = client.query(query).to_dataframe()
 
 # Explore some records
 df.head()
-
 
 # # Write to BigQuery
 
@@ -89,7 +72,6 @@ df.head()
 # Define the full table ID
 full_table_id = f"{project_id}.{dataset_id}.{table_id}"
 
-# -- YOUR CODE GOES BELOW THIS LINE
 # Define table schema based on the project description
 
 schema = [
@@ -98,9 +80,6 @@ schema = [
     bigquery.SchemaField('actor_last_name', 'STRING'),
     bigquery.SchemaField('actor_last_update', 'DATETIME'),
     ]
-
-# -- YOUR CODE GOES ABOVE THIS LINE
-
 
 # In[6]:
 
@@ -134,16 +113,11 @@ else:
 # In[7]:
 
 
-# Below line converts your i.pynb file to .py python executable file. Modify the input and output names based
-# on the table you are processing.
-# Example:
-# ! jupyter nbconvert stg_customer.ipynb --to python
+# Converting i.pynb file to .py python executable file.
 
-# -- YOUR CODE GOES BELOW THIS LINE
 
 get_ipython().system('python3 -m jupyter nbconvert stg_actor.ipynb --to python')
 
-# -- YOUR CODE GOES ABOVE THIS LINE
 
 
 # In[ ]:

@@ -21,12 +21,7 @@ print('Libraries imported successfully')
 # Set the environment variable for Google Cloud credentials
 # Place the path in which the .json file is located.
 
-# Example (if .json is located in the same directory with the notebook)
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "at-arch-416714-6f9900ec7.json"
-
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\roxan\AppData\Roaming\gcloud\application_default_credentials.json"
-
-
 # In[ ]:
 
 
@@ -69,7 +64,6 @@ df = client.query(query).to_dataframe()
 # Explore some records
 df.head()
 
-
 # # Write to BigQuery
 
 # In[ ]:
@@ -85,8 +79,6 @@ schema = [
     bigquery.SchemaField('country', 'STRING'),
     bigquery.SchemaField('country_last_update', 'DATETIME')
     ]
-
-
 # In[ ]:
 
 
@@ -119,17 +111,9 @@ else:
 # In[ ]:
 
 
-# Below line converts your i.pynb file to .py python executable file. Modify the input and output names based
-# on the table you are processing.
-# Example:
-# ! jupyter nbconvert stg_customer.ipynb --to python
-
-# -- YOUR CODE GOES BELOW THIS LINE
+# Converting i.pynb file to .py python executable file.
 
 get_ipython().system('python -m jupyter nbconvert stg_country.ipynb --to python')
-
-# -- YOUR CODE GOES ABOVE THIS LINE
-
 
 # In[ ]:
 
