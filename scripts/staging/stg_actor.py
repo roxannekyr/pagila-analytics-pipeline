@@ -94,8 +94,6 @@ get_ipython().system('python3 -m pip install nbconvert')
 get_ipython().system('python3 -m pip install nbconvert -U')
 
 
-# In[ ]:
-
 
 
 
