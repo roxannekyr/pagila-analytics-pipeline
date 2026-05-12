@@ -101,9 +101,5 @@ get_ipython().system('python -m jupyter nbconvert stg_address.ipynb --to python'
 
 get_ipython().system('python -m pip install nbconvert')
 
-
-# In[ ]:
-
-
 get_ipython().system('python -m pip install nbconvert -U')
 
