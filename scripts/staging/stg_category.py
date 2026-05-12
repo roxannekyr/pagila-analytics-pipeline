@@ -25,7 +25,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\roxan\AppData\Roaming\
 # In[ ]:
 
 
-# Set your Google Cloud project ID and BigQuery dataset details
+# Set Google Cloud project ID and BigQuery dataset details
 
 project_id = 'project-401f4646-3663-4125-aaa' # Edit with your project id
 dataset_id = 'staging_db' # Modify the necessary schema name: staging_db, reporting_db etc.
@@ -40,7 +40,7 @@ table_id = 'stg_category' # Modify the necessary table name: stg_customer, stg_c
 # Create a BigQuery client
 client = bigquery.Client(project=project_id)
 
-# Define your SQL query here
+# Define SQL query here
 query = """
 with base as (
   select *
