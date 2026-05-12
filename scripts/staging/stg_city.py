@@ -41,7 +41,7 @@ with base as (
   select * from final
 """
 
-# Executing the query and store the result in a dataframe
+# Executing the query and storing the result in a dataframe
 df = client.query(query).to_dataframe()
 
 # Exploring some records
