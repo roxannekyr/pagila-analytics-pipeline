@@ -13,9 +13,9 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = r"C:\Users\roxan\AppData\Roaming\
 
 # Setting Google Cloud project ID and BigQuery dataset details
 
-project_id = 'project-401f4646-3663-4125-aaa' # Edit with your project id
-dataset_id = 'staging_db' # Modify the necessary schema name: staging_db, reporting_db etc.
-table_id = 'stg_address' # Modify the necessary table name: stg_customer, stg_city etc.
+project_id = 'project-401f4646-3663-4125-aaa' # project id
+dataset_id = 'staging_db' # schema name: staging_db, reporting_db etc.
+table_id = 'stg_address' # table name: stg_customer, stg_city etc.
 
 # # SQL Query
 
@@ -50,7 +50,6 @@ df = client.query(query).to_dataframe()
 
 # Exploring some records
 df.head()
-
 
 # # Writing to BigQuery
 
