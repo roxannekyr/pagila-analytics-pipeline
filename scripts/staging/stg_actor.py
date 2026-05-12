@@ -71,7 +71,7 @@ def table_exists(client, full_table_id):
     except Exception:
         return False
 
-# Writing the dataframe to the table (overwrite if it exists, create if it doesn't)
+# Writing the dataframe to the table (overwriting if it exists, creating if it doesn't)
 if table_exists(client, full_table_id):
     # If the table exists, overwriting it
     destination_table = f"{dataset_id}.{table_id}"
@@ -82,7 +82,7 @@ else:
     # If the table does not exist, creating it
     job_config = bigquery.LoadJobConfig(schema=schema)
     job = client.load_table_from_dataframe(df, full_table_id, job_config=job_config)
-    job.result()  # Wait for the job to complete
+    job.result()  # Waitting for the job to complete
     print(f"Table {full_table_id} did not exist. Created and data loaded.")
 
 # Converting i.pynb file to .py python executable file.
