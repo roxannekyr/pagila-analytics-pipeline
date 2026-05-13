@@ -1,0 +1,99 @@
+Starting Pagila staging orchestration...
+▶ Running stg_actor.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_actor exists. Overwritten.
+▶ Running stg_address.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_address exists. Overwritten.
+▶ Running stg_category.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_category exists. Overwritten.
+▶ Running stg_city.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_city exists. Overwritten.
+▶ Running stg_country.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_country exists. Overwritten.
+▶ Running stg_customer.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_customer exists. Overwritten.
+▶ Running stg_film_actor.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_film_actor exists. Overwritten.
+▶ Running stg_film_category.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_film_category exists. Overwritten.
+▶ Running stg_film.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_film exists. Overwritten.
+▶ Running stg_inventory.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_inventory exists. Overwritten.
+▶ Running stg_language.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_language exists. Overwritten.
+▶ Running stg_payment.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_payment exists. Overwritten.
+▶ Running stg_rental.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_rental exists. Overwritten.
+▶ Running stg_staff.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_staff exists. Overwritten.
+▶ Running stg_store.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_store exists. Overwritten.
+✅ All staging scripts completed successfully!
+Starting Pagila reporting orchestration...
+▶ Running rep_customers_ordered.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.reporting_db.rep_customers_ordered exists. Overwritten.
+▶ Running rep_rentals_per_customer_and_period.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.reporting_db.rep_rentals_per_customer_and_period exists. Overwritten.
+▶ Running rep_rentals_per_period.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.reporting_db.rep_rentals_per_period exists. Overwritten.
+▶ Running rep_revenue_per_customer_and_period.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.reporting_db.rep_revenue_per_customer_and_period exists. Overwritten.
+✅ All reporting scripts completed successfully!
