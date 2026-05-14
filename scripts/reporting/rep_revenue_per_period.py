@@ -91,7 +91,7 @@ query = """
 
       select
           'Day' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, day) AS DATE) as reporting_date, -- Cast to DATE
+          CAST(date_trunc(rent.rental_rental_date, day) AS DATE) as reporting_date, 
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -107,7 +107,7 @@ query = """
 
       select
           'Month' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, month) AS DATE) as reporting_date, -- Cast to DATE
+          CAST(date_trunc(rent.rental_rental_date, month) AS DATE) as reporting_date, 
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -123,7 +123,7 @@ query = """
 
       select
           'Year' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, year) AS DATE) as reporting_date, -- Cast to DATE
+          CAST(date_trunc(rent.rental_rental_date, year) AS DATE) as reporting_date, 
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 

@@ -25,7 +25,7 @@ client = bigquery.Client(project=project_id)
 query = """
 with base as (
   select *
-  from `project-401f4646-3663-4125-aaa.pagila_productionpublic.actor` --Your table path
+  from `project-401f4646-3663-4125-aaa.pagila_productionpublic.actor` 
   )
 
   , final as (
