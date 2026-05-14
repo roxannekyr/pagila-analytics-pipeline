@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 #!/usr/bin/env python
@@ -47,6 +47,9 @@ client = bigquery.Client(project=project_id)
 
 # Defining the SQL query here
 query = """
+
+  /* Base query is the customer information */
+
   with cte_customers as (
       select *
       from `project-401f4646-3663-4125-aaa.staging_db.stg_customer`
@@ -60,15 +63,21 @@ query = """
       from `project-401f4646-3663-4125-aaa.reporting_db.reporting_periods_table`
       where reporting_period in ('Day','Month','Year') and reporting_date >= '2015-01-01'
   )
+
+  /* Calculating customer_lifespan */
+
   , cte_customer_lifespan as (
       select
           rent.rental_customer_id as customer_id,
           date(min(rent.rental_rental_date)) as first_rent,
           date(max(rent.rental_rental_date)) as last_rent,
-          date_diff(DATE(max(rent.rental_rental_date)), DATE(min(rent.rental_rental_date)), month) as customer_lifespan -- Added DATE() wrapper here
+          date_diff(DATE(max(rent.rental_rental_date)), DATE(min(rent.rental_rental_date)), month) as customer_lifespan 
       from cte_rentals as rent
       group by rent.rental_customer_id
   )
+
+    /* Calculating customer recency */
+
   , cte_customer_recency as (
     select 
       rent.rental_customer_id as customer_id,
@@ -76,18 +85,32 @@ query = """
     from cte_rentals as rent
     group by rent.rental_customer_id
   )
+
+  /* Adding payment information to be able to calculate the revenue */
+
   , cte_payment as (
       select * 
       from `project-401f4646-3663-4125-aaa.staging_db.stg_payment`
   )
+
+   /* Adding film information to be able to find the film title 'GOODFELLAS SALUTE' to filter out later in the where clause */
+
   , cte_film as (
       select * 
       from `project-401f4646-3663-4125-aaa.staging_db.stg_film`
   )
+
+  /* Adding inventory information. This table acts as a bridge table from where we can derive film's title data which will be used in the main 
+  cte where we will calculate the revenue (& more specifically in the code section needed for the where clause limitation) */
+
   , cte_inventory as (
       select *
       from `project-401f4646-3663-4125-aaa.staging_db.stg_inventory`
   )
+
+     /* Added a left join to table customers to be able to view here data regarding customers & selected to view also customer_id column, while also 
+     added in the group by clause also the customer id to be able to see data per reporting period per reporting date and per customer */
+
   ,  cte_revenue_per_period as (
       select
           cte_customers.customer_id,

@@ -73,7 +73,7 @@ query = """
 
       select
           'Day' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, day) AS DATE) as reporting_date, -- Added CAST
+          CAST(date_trunc(rent.rental_rental_date, day) AS DATE) as reporting_date, 
           cust.customer_id,
           count(*) as total_rentals
       from cte_rentals as rent left join cte_customers as cust 
@@ -84,7 +84,7 @@ query = """
 
       select
           'Month' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, month) AS DATE) as reporting_date, -- Added CAST
+          CAST(date_trunc(rent.rental_rental_date, month) AS DATE) as reporting_date, 
           cust.customer_id,
           count(*) as total_rentals
       from cte_rentals as rent left join cte_customers as cust 
@@ -95,7 +95,7 @@ query = """
 
       select
           'Year' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, year) AS DATE) as reporting_date, -- Added CAST
+          CAST(date_trunc(rent.rental_rental_date, year) AS DATE) as reporting_date,
           cust.customer_id,
           count(*) as total_rentals
       from cte_rentals as rent left join cte_customers as cust 
