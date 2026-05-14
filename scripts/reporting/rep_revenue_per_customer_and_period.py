@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 #!/usr/bin/env python
@@ -99,10 +99,10 @@ query = """
      added in the group by clause also the customer id to be able to see data per reporting period per reporting date and per customer */
   ,  cte_revenue_per_period as (
 
-      select
+    select
           cte_customers.customer_id,
           'Day' as reporting_period,
-          date_trunc(rent.rental_rental_date,day) as reporting_date,
+          CAST(date_trunc(rent.rental_rental_date, day) AS DATE) as reporting_date, -- Re-add the CAST
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -118,10 +118,10 @@ query = """
 
       union all
 
-      select
+    select
           cte_customers.customer_id,
           'Month' as reporting_period,
-          date_trunc(rent.rental_rental_date,month) as reporting_date,
+          CAST(date_trunc(rent.rental_rental_date, month) AS DATE) as reporting_date, -- Re-add the CAST
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -137,10 +137,10 @@ query = """
 
       union all
 
-      select
+    select
           cte_customers.customer_id,
           'Year' as reporting_period,
-          date_trunc(rent.rental_rental_date,year) as reporting_date,
+          CAST(date_trunc(rent.rental_rental_date, year) AS DATE) as reporting_date, -- Re-add the CAST
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -215,7 +215,7 @@ df['total_revenue'] = df['total_revenue'].astype('float64')
 # Exploring some records
 display(df.head())
 
-# Define table schema - FIXED: Added closing bracket and correct types
+# Defining table schema
 schema = [
     bigquery.SchemaField('customer_id', 'INTEGER'),
     bigquery.SchemaField('reporting_period', 'STRING'),

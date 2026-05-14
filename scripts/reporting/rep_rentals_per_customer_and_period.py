@@ -73,7 +73,7 @@ query = """
 
       select
           'Day' as reporting_period,
-          date_trunc(rent.rental_rental_date,day) as reporting_date,
+          CAST(date_trunc(rent.rental_rental_date, day) AS DATE) as reporting_date, -- Added CAST
           cust.customer_id,
           count(*) as total_rentals
       from cte_rentals as rent left join cte_customers as cust 
@@ -84,7 +84,7 @@ query = """
 
       select
           'Month' as reporting_period,
-          date_trunc(rent.rental_rental_date,month) as reporting_date,
+          CAST(date_trunc(rent.rental_rental_date, month) AS DATE) as reporting_date, -- Added CAST
           cust.customer_id,
           count(*) as total_rentals
       from cte_rentals as rent left join cte_customers as cust 
@@ -95,7 +95,7 @@ query = """
 
       select
           'Year' as reporting_period,
-          date_trunc(rent.rental_rental_date,year) as reporting_date,
+          CAST(date_trunc(rent.rental_rental_date, year) AS DATE) as reporting_date, -- Added CAST
           cust.customer_id,
           count(*) as total_rentals
       from cte_rentals as rent left join cte_customers as cust 
@@ -160,7 +160,7 @@ full_table_id = f"{project_id}.{dataset_id}.{table_id}"
 # Exploring some records
 display(df.head())
 
-# Define table schema - FIXED: Added closing bracket and correct types
+# Defining table schema
 schema = [
     bigquery.SchemaField('reporting_period', 'STRING'),
     bigquery.SchemaField('reporting_date', 'DATE'),
@@ -172,33 +172,24 @@ schema = [
 # Creating a BigQuery client
 client = bigquery.Client(project=project_id)
 
-# Checking if the table exists
-def table_exists(client, full_table_id):
-    try:
-        client.get_table(full_table_id)
-        return True
-    except Exception:
-        return False
+# Configuring the load job to always overwrite if the table exists, or creating if it doesn't
+job_config = bigquery.LoadJobConfig(
+    schema=schema,
+    write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE 
+)
 
-# Writting the dataframe to the table (overwriting if it exists, creating if it doesn't)
-if table_exists(client, full_table_id):
-    # If the table exists, overwriting it
-    destination_table = f"{dataset_id}.{table_id}"
-    # Writting the dataframe to the table (overwriting if it exists)
-    to_gbq(df, destination_table, project_id=project_id, if_exists='replace')
-    print(f"Table {full_table_id} exists. Overwritten.")
-else:
-    # If the table does not exist, creating it
-    job_config = bigquery.LoadJobConfig(schema=schema)
-    job = client.load_table_from_dataframe(df, full_table_id, job_config=job_config)
-    job.result()  # Waitting for the job to complete
-    print(f"Table {full_table_id} did not exist. Created and data loaded.")
+print(f"Loading data into {full_table_id}...")
+
+# Running the job
+job = client.load_table_from_dataframe(df, full_table_id, job_config=job_config)
+job.result()  # Wait for the job to complete
+
+print(f"Data successfully loaded to {full_table_id}.")
 
 
 # In[7]:
 
-
-# Safely run terminal commands (replacing get_ipython)
+# Safely running terminal commands 
 try:
     subprocess.run(['python', '-m', 'pip', 'install', 'nbconvert', '-U'], check=True)
     subprocess.run(['python', '-m', 'jupyter', 'nbconvert', 'rep_rentals_per_customer_and_period.ipynb', '--to', 'python', '--output-dir=..'], check=True)
