@@ -1,3 +1,4 @@
+ 
     with cte_rentals as (
 
       select * 
@@ -41,10 +42,10 @@
 
   ,  cte_revenue_per_period as (
 
-    select
+      select
           cte_customers.customer_id,
           'Day' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, day) AS DATE) as reporting_date, 
+          date_trunc(cast(rent.rental_rental_date as date), day) as reporting_date,
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -60,10 +61,10 @@
 
       union all
 
-    select
+      select
           cte_customers.customer_id,
           'Month' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, month) AS DATE) as reporting_date, 
+          date_trunc(cast(rent.rental_rental_date as date), month) as reporting_date,
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -79,10 +80,10 @@
 
       union all
 
-    select
+      select
           cte_customers.customer_id,
           'Year' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, year) AS DATE) as reporting_date, 
+          date_trunc(cast(rent.rental_rental_date as date), year) as reporting_date,
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -138,3 +139,4 @@
 
   select * from cte_final
   order by customer_id, reporting_period ,reporting_date ;
+
