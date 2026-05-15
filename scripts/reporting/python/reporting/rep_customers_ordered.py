@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 #!/usr/bin/env python
@@ -187,9 +187,6 @@ schema = [
 ]
 
 # In[6]:
-
-# Creating a BigQuery client
-client = bigquery.Client(project=project_id)
 
 # Configuring the load job to always overwrite if the table exists, or creating if it doesn't
 job_config = bigquery.LoadJobConfig(

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 #!/usr/bin/env python
@@ -40,7 +40,6 @@ table_id = 'rep_films_rented' # table name: stg_customer, stg_city etc.
 # # SQL Query
 
 # In[4]:
-
 
 # Creating a BigQuery client
 client = bigquery.Client(project=project_id)
@@ -160,23 +159,20 @@ print(df.head())
 # Defining table schema based on the project description
 
 schema = [
-    bigquery.SchemaField('category_id',         'INTEGER'),
-    bigquery.SchemaField('category_name',        'STRING'),
-    bigquery.SchemaField('film_id',              'INTEGER'),
-    bigquery.SchemaField('film_title',           'STRING'),
-    bigquery.SchemaField('first_rent',           'DATE'),
-    bigquery.SchemaField('last_rent',            'DATE'),
-    bigquery.SchemaField('product_segment',      'STRING'),
-    bigquery.SchemaField('total_unique_orders',  'INTEGER'),
-    bigquery.SchemaField('total_revenue',        'FLOAT64'),
-    bigquery.SchemaField('avg_order_revenue',    'FLOAT64'),
-    bigquery.SchemaField('avg_monthly_revenue',  'FLOAT64'),
+    bigquery.SchemaField('category_id','INTEGER'),
+    bigquery.SchemaField('category_name','STRING'),
+    bigquery.SchemaField('film_id','INTEGER'),
+    bigquery.SchemaField('film_title','STRING'),
+    bigquery.SchemaField('first_rent','DATE'),
+    bigquery.SchemaField('last_rent','DATE'),
+    bigquery.SchemaField('product_segment','STRING'),
+    bigquery.SchemaField('total_unique_orders','INTEGER'),
+    bigquery.SchemaField('total_revenue','FLOAT64'),
+    bigquery.SchemaField('avg_order_revenue','FLOAT64'),
+    bigquery.SchemaField('avg_monthly_revenue','FLOAT64'),
 ]
 
 # In[6]:
-
-# Creating a BigQuery client
-client = bigquery.Client(project=project_id)
 
 # Configuring the load job to always overwrite if the table exists, or creating if it doesn't
 job_config = bigquery.LoadJobConfig(
