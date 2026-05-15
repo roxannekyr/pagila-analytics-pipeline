@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 #!/usr/bin/env python
@@ -49,7 +49,7 @@ client = bigquery.Client(project=project_id)
 # Defining the SQL query here
 query = """ 
 
-   with cte_rentals as (
+  with cte_rentals as (
 
       select * 
       from `project-401f4646-3663-4125-aaa.staging_db.stg_rental`
@@ -64,55 +64,42 @@ query = """
 
   )
 
-  ,  cte_customers as (
-     select *
-     from `project-401f4646-3663-4125-aaa.staging_db.stg_customer`
-  )
-
   ,  cte_rentals_per_period as (
 
       select
           'Day' as reporting_period,
-          cast(date_trunc(rent.rental_rental_date, day) as date) as reporting_date,
-          cust.customer_id,
+          date_trunc(cast(rent.rental_rental_date as date), day) as reporting_date,
           count(*) as total_rentals
-      from cte_rentals as rent left join cte_customers as cust 
-            on rent.rental_customer_id = cust.customer_id
-      group by reporting_period,reporting_date,cust.customer_id
+      from cte_rentals as rent
+      group by reporting_period,reporting_date
 
       union all
 
       select
           'Month' as reporting_period,
-          cast(date_trunc(rent.rental_rental_date, month) as date) as reporting_date,
-          cust.customer_id,
+          date_trunc(cast(rent.rental_rental_date as date), month) as reporting_date,
           count(*) as total_rentals
-      from cte_rentals as rent left join cte_customers as cust 
-            on rent.rental_customer_id = cust.customer_id
-      group by reporting_period,reporting_date,cust.customer_id
+      from cte_rentals as rent
+      group by reporting_period,reporting_date
 
       union all
 
       select
           'Year' as reporting_period,
-          cast(date_trunc(rent.rental_rental_date, year) as date) as reporting_date,
-          cust.customer_id,
+          date_trunc(cast(rent.rental_rental_date as date), year) as reporting_date,
           count(*) as total_rentals
-      from cte_rentals as rent left join cte_customers as cust 
-            on rent.rental_customer_id = cust.customer_id
-      group by reporting_period,reporting_date,cust.customer_id
+      from cte_rentals as rent
+      group by reporting_period,reporting_date
 
   )
-
  -- All above combined with all dates master date table
  ,  cte_final as (
 
       select 
           cte_reporting_dates.reporting_period,
           cte_reporting_dates.reporting_date,
-          cte_rentals_per_period.customer_id,
-          cte_rentals_per_period.total_rentals as total_rentals
-      from cte_reporting_dates inner join cte_rentals_per_period
+          coalesce(cte_rentals_per_period.total_rentals,0) as total_rentals
+      from cte_reporting_dates left join cte_rentals_per_period
         on cte_reporting_dates.reporting_period=cte_rentals_per_period.reporting_period 
         and cte_reporting_dates.reporting_date=cte_rentals_per_period.reporting_date
       where cte_reporting_dates.reporting_period = 'Day'
@@ -122,9 +109,8 @@ query = """
       select 
           cte_reporting_dates.reporting_period,
           cte_reporting_dates.reporting_date,
-          cte_rentals_per_period.customer_id,
-          cte_rentals_per_period.total_rentals as total_rentals
-      from cte_reporting_dates inner join cte_rentals_per_period
+          coalesce(cte_rentals_per_period.total_rentals,0) as total_rentals
+      from cte_reporting_dates left join cte_rentals_per_period
         on cte_reporting_dates.reporting_period=cte_rentals_per_period.reporting_period 
         and cte_reporting_dates.reporting_date=cte_rentals_per_period.reporting_date 
       where cte_reporting_dates.reporting_period = 'Month'
@@ -134,9 +120,8 @@ query = """
       select 
           cte_reporting_dates.reporting_period,
           cte_reporting_dates.reporting_date,
-          cte_rentals_per_period.customer_id,
-          cte_rentals_per_period.total_rentals as total_rentals
-      from cte_reporting_dates inner join cte_rentals_per_period 
+          coalesce(cte_rentals_per_period.total_rentals,0) as total_rentals
+      from cte_reporting_dates left join cte_rentals_per_period 
         on cte_reporting_dates.reporting_period=cte_rentals_per_period.reporting_period 
         and cte_reporting_dates.reporting_date=cte_rentals_per_period.reporting_date 
       where cte_reporting_dates.reporting_period = 'Year'
@@ -158,7 +143,7 @@ df = client.query(query).to_dataframe()
 full_table_id = f"{project_id}.{dataset_id}.{table_id}"
 
 # Exploring some records
-display(df.head())
+print(df.head())
 
 # Defining table schema
 schema = [
@@ -167,9 +152,6 @@ schema = [
     bigquery.SchemaField('total_rentals', 'INTEGER')
 ]
 # In[6]:
-
-# Creating a BigQuery client
-client = bigquery.Client(project=project_id)
 
 # Configuring the load job to always overwrite if the table exists, or creating if it doesn't
 job_config = bigquery.LoadJobConfig(

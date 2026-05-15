@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 #!/usr/bin/env python
@@ -91,7 +91,7 @@ query = """
 
       select
           'Day' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, day) AS DATE) as reporting_date, 
+          cast(date_trunc(rent.rental_rental_date, day) AS date) as reporting_date, 
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -107,7 +107,7 @@ query = """
 
       select
           'Month' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, month) AS DATE) as reporting_date, 
+          cast(date_trunc(rent.rental_rental_date, month) AS date) as reporting_date, 
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -123,7 +123,7 @@ query = """
 
       select
           'Year' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, year) AS DATE) as reporting_date, 
+          cast(date_trunc(rent.rental_rental_date, year) AS date) as reporting_date, 
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -191,7 +191,7 @@ full_table_id = f"{project_id}.{dataset_id}.{table_id}"
 df['total_revenue'] = df['total_revenue'].astype('float64')
 
 # Exploring some records
-display(df.head())
+print(df.head())
 
 # Defining table schema
 schema = [
@@ -200,9 +200,6 @@ schema = [
     bigquery.SchemaField('total_revenue', 'FLOAT')
 ]
 # In[6]:
-
-# Creating a BigQuery client
-client = bigquery.Client(project=project_id)
 
 # Configuring the load job to always overwrite if the table exists, or create if it doesn't
 job_config = bigquery.LoadJobConfig(
@@ -229,10 +226,4 @@ try:
     print("Notebook successfully converted.")
 except Exception as e:
     print(f"Notebook conversion skipped or failed: {e}")
-
-
-# In[ ]:
-
-
-
 

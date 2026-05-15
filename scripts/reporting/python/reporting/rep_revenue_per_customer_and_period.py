@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 
 #!/usr/bin/env python
@@ -102,7 +102,7 @@ query = """
     select
           cte_customers.customer_id,
           'Day' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, day) AS DATE) as reporting_date, 
+          cast(date_trunc(rent.rental_rental_date, day) AS date) as reporting_date, 
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -121,7 +121,7 @@ query = """
     select
           cte_customers.customer_id,
           'Month' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, month) AS DATE) as reporting_date, 
+          cast(date_trunc(rent.rental_rental_date, month) AS date) as reporting_date, 
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -140,7 +140,7 @@ query = """
     select
           cte_customers.customer_id,
           'Year' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, year) AS DATE) as reporting_date, 
+          cast(date_trunc(rent.rental_rental_date, year) AS date) as reporting_date, 
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -213,7 +213,7 @@ full_table_id = f"{project_id}.{dataset_id}.{table_id}"
 df['total_revenue'] = df['total_revenue'].astype('float64')
 
 # Exploring some records
-display(df.head())
+print(df.head())
 
 # Defining table schema
 schema = [
@@ -222,32 +222,22 @@ schema = [
     bigquery.SchemaField('reporting_date', 'DATE'),
     bigquery.SchemaField('total_revenue', 'FLOAT')
 ]
+
 # In[6]:
 
-# Creating a BigQuery client
-client = bigquery.Client(project=project_id)
+# Configure the load job to ALWAYS overwrite if the table exists, or create if it doesn't
+job_config = bigquery.LoadJobConfig(
+    schema=schema,
+    write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
+)
 
-# Checking if the table exists
-def table_exists(client, full_table_id):
-    try:
-        client.get_table(full_table_id)
-        return True
-    except Exception:
-        return False
+print(f"Loading data into {full_table_id}...")
 
-# Writting the dataframe to the table (overwriting if it exists, creating if it doesn't)
-if table_exists(client, full_table_id):
-    # If the table exists, overwriting it
-    destination_table = f"{dataset_id}.{table_id}"
-    # Writting the dataframe to the table (overwriting if it exists)
-    to_gbq(df, destination_table, project_id=project_id, if_exists='replace')
-    print(f"Table {full_table_id} exists. Overwritten.")
-else:
-    # If the table does not exist, creating it
-    job_config = bigquery.LoadJobConfig(schema=schema)
-    job = client.load_table_from_dataframe(df, full_table_id, job_config=job_config)
-    job.result()  # Waitting for the job to complete
-    print(f"Table {full_table_id} did not exist. Created and data loaded.")
+# Run the job
+job = client.load_table_from_dataframe(df, full_table_id, job_config=job_config)
+job.result()  # Wait for the job to complete
+
+print(f"Data successfully loaded to {full_table_id}.")
 
 
 # In[7]:

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[5]:
 
 
 #!/usr/bin/env python
@@ -170,10 +170,4 @@ try:
     print("Notebook successfully converted.")
 except Exception as e:
     print(f"Notebook conversion skipped or failed: {e}")
-
-
-# In[ ]:
-
-
-
 

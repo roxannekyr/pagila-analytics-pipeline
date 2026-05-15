@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 #!/usr/bin/env python
@@ -158,7 +158,7 @@ df = client.query(query).to_dataframe()
 full_table_id = f"{project_id}.{dataset_id}.{table_id}"
 
 # Exploring some records
-display(df.head())
+print(df.head())
 
 # Defining table schema
 schema = [
@@ -168,9 +168,6 @@ schema = [
     bigquery.SchemaField('total_rentals', 'INTEGER')
 ]
 # In[6]:
-
-# Creating a BigQuery client
-client = bigquery.Client(project=project_id)
 
 # Configuring the load job to always overwrite if the table exists, or creating if it doesn't
 job_config = bigquery.LoadJobConfig(
