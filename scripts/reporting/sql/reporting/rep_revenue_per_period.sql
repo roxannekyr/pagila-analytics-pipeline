@@ -1,4 +1,4 @@
-  with cte_rentals as (
+   with cte_rentals as (
 
       select * 
       from `project-401f4646-3663-4125-aaa.staging_db.stg_rental`
@@ -26,7 +26,7 @@
       from `project-401f4646-3663-4125-aaa.staging_db.stg_film`
 
   )
-
+     
   , cte_inventory as (
 
       select *
@@ -37,7 +37,7 @@
 
       select
           'Day' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, day) AS DATE) as reporting_date, 
+          date_trunc(cast(rent.rental_rental_date as date), day) as reporting_date,
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -47,13 +47,13 @@
               left join cte_film as film
                 on inv.inventory_film_id=film.film_id
       where film_title not in ('GOODFELLAS SALUTE')
-      group by reporting_period, reporting_date
+      group by reporting_period,reporting_date
 
       union all
 
       select
           'Month' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, month) AS DATE) as reporting_date, 
+          date_trunc(cast(rent.rental_rental_date as date), month) as reporting_date,
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -63,13 +63,13 @@
               left join cte_film as film
                 on inv.inventory_film_id=film.film_id
       where film_title not in ('GOODFELLAS SALUTE')
-      group by reporting_period, reporting_date
+      group by reporting_period,reporting_date
 
       union all
 
       select
           'Year' as reporting_period,
-          CAST(date_trunc(rent.rental_rental_date, year) AS DATE) as reporting_date, 
+          date_trunc(cast(rent.rental_rental_date as date), year) as reporting_date,
           sum(payment_amount) as total_revenue
       from cte_rentals as rent
       left join cte_payment as payment 
@@ -79,9 +79,10 @@
               left join cte_film as film
                 on inv.inventory_film_id=film.film_id
       where film_title not in ('GOODFELLAS SALUTE')
-      group by reporting_period, reporting_date
+      group by reporting_period,reporting_date
 
   )
+
  ,  cte_final as (
 
       select 
@@ -119,3 +120,4 @@
 
   select * from cte_final
   order by reporting_period ,reporting_date;
+
