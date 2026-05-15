@@ -48,132 +48,117 @@ client = bigquery.Client(project=project_id)
 
 # Defining the SQL query here
 query = """
-   with cte_rentals as (
 
-      select * 
-      from `project-401f4646-3663-4125-aaa.staging_db.stg_rental`
-
+  with cte_rentals as (
+    select * from `project-401f4646-3663-4125-aaa.staging_db.stg_rental`
   )
 
-  , cte_reporting_dates as (
-
-      select * 
-      from `project-401f4646-3663-4125-aaa.reporting_db.reporting_periods_table`
-      where reporting_period in ('Day','Month','Year') and reporting_date >= '2015-01-01'
-
+  ,cte_reporting_dates as (
+    select *
+    from `project-401f4646-3663-4125-aaa.reporting_db.reporting_periods_table`
+    where reporting_period in ('Day','Month','Year')
+      and reporting_date >= '2015-01-01'
   )
 
-  /* Adding payment information to be able to calculate the revenue */
-  , cte_payment as (
-
-      select * 
-      from `project-401f4646-3663-4125-aaa.staging_db.stg_payment`
-
+  ,cte_payment as (
+  select * from `project-401f4646-3663-4125-aaa.staging_db.stg_payment`   
   )
 
-  /* Adding film information to be able to find the film title 'GOODFELLAS SALUTE' to filter out later in the where clause */
-  , cte_film as (
-
-      select * 
-      from `project-401f4646-3663-4125-aaa.staging_db.stg_film`
-
+  ,cte_film as (
+  select * from `project-401f4646-3663-4125-aaa.staging_db.stg_film`   
   )
 
-  /* Adding inventory information. This table acts as a bridge table from where we can derive film's title data which will be used in the main 
-  cte where we will calculate the revenue (& more specifically in the code section needed for the where clause limitation) */
-  , cte_inventory as (
-
-      select *
-      from `project-401f4646-3663-4125-aaa.staging_db.stg_inventory`
+  ,cte_inventory as (
+  select * from `project-401f4646-3663-4125-aaa.staging_db.stg_inventory` 
   )
 
-  ,  cte_revenue_per_period as (
-
+  ,cte_revenue_per_period as (
       select
           'Day' as reporting_period,
-          cast(date_trunc(rent.rental_rental_date, day) AS date) as reporting_date, 
+          date_trunc(date(rentals.rental_rental_date), day) as reporting_date,   -- if timestamp now aggregated in daily level
           sum(payment_amount) as total_revenue
-      from cte_rentals as rent
-      left join cte_payment as payment 
-        on rent.rental_id=payment.payment_rental_id
-          left join cte_inventory as inv
-            on rent.rental_inventory_id=inv.inventory_id
-              left join cte_film as film
-                on inv.inventory_film_id=film.film_id
-      where film_title not in ('GOODFELLAS SALUTE')
-      group by reporting_period, reporting_date
+      from cte_rentals as rentals left join cte_payment as payment 
+        on rentals.rental_id = payment.payment_rental_id
+          left join cte_inventory as inventory
+            on rentals.rental_inventory_id = inventory.inventory_id
+              left join cte_film as film    
+                on inventory.inventory_film_id = film.film_id
+      where film.film_title not in ('GOODFELLAS SALUTE')
+      group by reporting_period,reporting_date
 
       union all
 
       select
           'Month' as reporting_period,
-          cast(date_trunc(rent.rental_rental_date, month) AS date) as reporting_date, 
+          date_trunc(date(rentals.rental_rental_date), month) as reporting_date,   -- if timestamp now aggregated in monthly level
           sum(payment_amount) as total_revenue
-      from cte_rentals as rent
-      left join cte_payment as payment 
-        on rent.rental_id=payment.payment_rental_id
-          left join cte_inventory as inv
-            on rent.rental_inventory_id=inv.inventory_id
-              left join cte_film as film
-                on inv.inventory_film_id=film.film_id
-      where film_title not in ('GOODFELLAS SALUTE')
-      group by reporting_period, reporting_date
+      from cte_rentals as rentals left join cte_payment as payment 
+        on rentals.rental_id = payment.payment_rental_id
+          left join cte_inventory as inventory
+            on rentals.rental_inventory_id = inventory.inventory_id
+              left join cte_film as film    
+                on inventory.inventory_film_id = film.film_id
+      where film.film_title not in ('GOODFELLAS SALUTE')
+      group by reporting_period,reporting_date
 
       union all
 
       select
           'Year' as reporting_period,
-          cast(date_trunc(rent.rental_rental_date, year) AS date) as reporting_date, 
+          date_trunc(date(rentals.rental_rental_date), year) as reporting_date,   -- if timestamp now aggregated in yearly level
           sum(payment_amount) as total_revenue
-      from cte_rentals as rent
-      left join cte_payment as payment 
-        on rent.rental_id=payment.payment_rental_id
-          left join cte_inventory as inv
-            on rent.rental_inventory_id=inv.inventory_id
-              left join cte_film as film
-                on inv.inventory_film_id=film.film_id
-      where film_title not in ('GOODFELLAS SALUTE')
-      group by reporting_period, reporting_date
+      from cte_rentals as rentals left join cte_payment as payment 
+        on rentals.rental_id = payment.payment_rental_id
+          left join cte_inventory as inventory
+            on rentals.rental_inventory_id = inventory.inventory_id
+              left join cte_film as film    
+                on inventory.inventory_film_id = film.film_id
+      where film.film_title not in ('GOODFELLAS SALUTE')
+      group by reporting_period,reporting_date
 
   )
- -- All above combined - final cte from where we see the result
+
  ,  cte_final as (
 
       select 
           cte_reporting_dates.reporting_period,
           cte_reporting_dates.reporting_date,
-          coalesce(cte_revenue_per_period.total_revenue,0) as total_revenue
-      from cte_reporting_dates left join cte_revenue_per_period
-        on cte_reporting_dates.reporting_period=cte_revenue_per_period.reporting_period 
-        and cte_reporting_dates.reporting_date=cte_revenue_per_period.reporting_date
+          cte_revenue_per_period.total_revenue as total_revenue
+      from cte_reporting_dates inner join cte_revenue_per_period
+        on cte_reporting_dates.reporting_period=cte_revenue_per_period.reporting_period and cte_reporting_dates.reporting_date=cte_revenue_per_period.reporting_date
       where cte_reporting_dates.reporting_period = 'Day'
 
       union all
-
-      select 
+      select
           cte_reporting_dates.reporting_period,
           cte_reporting_dates.reporting_date,
-          coalesce(cte_revenue_per_period.total_revenue,0) as total_revenue
-      from cte_reporting_dates left join cte_revenue_per_period
-        on cte_reporting_dates.reporting_period=cte_revenue_per_period.reporting_period 
-        and cte_reporting_dates.reporting_date=cte_revenue_per_period.reporting_date 
+          cte_revenue_per_period.total_revenue as total_revenue
+      from cte_reporting_dates inner join cte_revenue_per_period
+        on cte_reporting_dates.reporting_period=cte_revenue_per_period.reporting_period and cte_reporting_dates.reporting_date=cte_revenue_per_period.reporting_date
       where cte_reporting_dates.reporting_period = 'Month'
 
       union all
-
-      select 
+      select
           cte_reporting_dates.reporting_period,
           cte_reporting_dates.reporting_date,
-          coalesce(cte_revenue_per_period.total_revenue,0) as total_revenue
-      from cte_reporting_dates left join cte_revenue_per_period 
-        on cte_reporting_dates.reporting_period=cte_revenue_per_period.reporting_period 
-        and cte_reporting_dates.reporting_date=cte_revenue_per_period.reporting_date 
+          cte_revenue_per_period.total_revenue as total_revenue
+      from cte_reporting_dates inner join cte_revenue_per_period
+        on cte_reporting_dates.reporting_period=cte_revenue_per_period.reporting_period and cte_reporting_dates.reporting_date=cte_revenue_per_period.reporting_date
       where cte_reporting_dates.reporting_period = 'Year'
-
  )
 
   select * from cte_final
-  order by reporting_period ,reporting_date;
+  order by total_revenue desc
+
+  /* Checking totals */
+
+  /*
+    select 
+        sum(total_revenue) as total_revenue
+    from cte_final
+    where reporting_period = 'Day'; 
+
+    */
 
 """
 
@@ -215,14 +200,11 @@ job.result()  # Wait for the job to complete
 
 print(f"Data successfully loaded to {full_table_id}.")
 
-
 # In[7]:
 
-
-# Safely run terminal commands (replacing get_ipython)
+# Safely running terminal commands
 try:
-    subprocess.run(['python', '-m', 'pip', 'install', 'nbconvert', '-U'], check=True)
-    subprocess.run(['python', '-m', 'jupyter', 'nbconvert', 'rep_revenue_per_period.ipynb', '--to', 'python', '--output-dir=..'], check=True)
+    subprocess.run(['python', '-m', 'jupyter', 'nbconvert', 'rep_revenue_per_period.ipynb','--to', 'python','--output-dir=../python/reporting'], check=True)
     print("Notebook successfully converted.")
 except Exception as e:
     print(f"Notebook conversion skipped or failed: {e}")
