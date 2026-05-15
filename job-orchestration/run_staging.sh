@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
+export PATH=/usr/bin:/usr/local/bin:$PATH
 export GOOGLE_APPLICATION_CREDENTIALS="/mnt/c/Users/roxan/AppData/Roaming/gcloud/application_default_credentials.json"
 
-# Define your base directory
 BASE_DIR="/mnt/c/Users/roxan/Desktop/Personal/Learning & Development/2. IHU DATA ANALYTICS IN BUSINESS/Capstone/Capstone Roxani/Cron orchestration"
-
-# Step into the directory first! This fixes 99% of Python path errors in Cron.
 cd "$BASE_DIR"
+
+PYTHON=$(which python3)
 
 SCRIPTS=(
     "stg_actor.py"
@@ -30,8 +30,19 @@ echo "Starting Pagila staging orchestration..."
 
 for script in "${SCRIPTS[@]}"; do
     echo "▶ Running $script..."
-    # Since we cd'd into the folder, we just call the script directly
-    python3 "$script"
+
+    # Strip Windows credentials line, replace display() with print(), remove get_ipython() lines
+    sed '/GOOGLE_APPLICATION_CREDENTIALS/d' "$script" \
+        | sed 's/display(/print(/g' \
+        | sed '/get_ipython/d' > "wsl_temp_script.py"
+
+    # Run the temporary, Linux-friendly version
+    $PYTHON "wsl_temp_script.py"
+
+    # Clean up
+    rm "wsl_temp_script.py"
+
+    echo "✅ $script completed."
 done
 
 echo "✅ All staging scripts completed successfully!"

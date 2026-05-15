@@ -644,3 +644,234 @@ Loading data into project-401f4646-3663-4125-aaa.reporting_db.rep_rental_details
 Data successfully loaded to project-401f4646-3663-4125-aaa.reporting_db.rep_rental_details.
 Notebook conversion skipped or failed: [Errno 2] No such file or directory: 'python'
 ✅ All reporting scripts completed successfully!
+Starting Pagila staging orchestration...
+▶ Running stg_actor.py...
+Libraries imported successfully
+Traceback (most recent call last):
+  File "/mnt/c/Users/roxan/Desktop/Personal/Learning & Development/2. IHU DATA ANALYTICS IN BUSINESS/Capstone/Capstone Roxani/Cron orchestration/stg_actor.py", line 23, in <module>
+    client = bigquery.Client(project=project_id)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/client.py", line 261, in __init__
+    super(Client, self).__init__(
+  File "/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/client/__init__.py", line 340, in __init__
+    Client.__init__(
+  File "/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/client/__init__.py", line 197, in __init__
+    credentials, _ = google.auth.default(scopes=scopes)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roxannekyr92/.local/lib/python3.12/site-packages/google/auth/_default.py", line 714, in default
+    credentials, project_id = checker()
+                              ^^^^^^^^^
+  File "/home/roxannekyr92/.local/lib/python3.12/site-packages/google/auth/_default.py", line 707, in <lambda>
+    lambda: _get_explicit_environ_credentials(quota_project_id=quota_project_id),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roxannekyr92/.local/lib/python3.12/site-packages/google/auth/_default.py", line 352, in _get_explicit_environ_credentials
+    credentials, project_id = load_credentials_from_file(
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roxannekyr92/.local/lib/python3.12/site-packages/google/auth/_default.py", line 178, in load_credentials_from_file
+    raise exceptions.DefaultCredentialsError(
+google.auth.exceptions.DefaultCredentialsError: File C:\Users\roxan\AppData\Roaming\gcloud\application_default_credentials.json was not found.
+Starting Pagila staging orchestration...
+▶ Running stg_actor.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_actor exists. Overwritten.
+✅ stg_actor.py completed.
+▶ Running stg_address.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_address exists. Overwritten.
+✅ stg_address.py completed.
+▶ Running stg_category.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_category exists. Overwritten.
+✅ stg_category.py completed.
+▶ Running stg_city.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_city exists. Overwritten.
+✅ stg_city.py completed.
+▶ Running stg_country.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_country exists. Overwritten.
+✅ stg_country.py completed.
+▶ Running stg_customer.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_customer exists. Overwritten.
+✅ stg_customer.py completed.
+▶ Running stg_film_actor.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_film_actor exists. Overwritten.
+✅ stg_film_actor.py completed.
+▶ Running stg_film_category.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_film_category exists. Overwritten.
+✅ stg_film_category.py completed.
+▶ Running stg_film.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_film exists. Overwritten.
+✅ stg_film.py completed.
+▶ Running stg_inventory.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_inventory exists. Overwritten.
+✅ stg_inventory.py completed.
+▶ Running stg_language.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_language exists. Overwritten.
+✅ stg_language.py completed.
+▶ Running stg_payment.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_payment exists. Overwritten.
+✅ stg_payment.py completed.
+▶ Running stg_rental.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_rental exists. Overwritten.
+✅ stg_rental.py completed.
+▶ Running stg_staff.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_staff exists. Overwritten.
+✅ stg_staff.py completed.
+▶ Running stg_store.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+Libraries imported successfully
+Table project-401f4646-3663-4125-aaa.staging_db.stg_store exists. Overwritten.
+✅ stg_store.py completed.
+✅ All staging scripts completed successfully!
+Starting Pagila reporting orchestration...
+▶ Running rep_customers_ordered.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+/usr/bin/python3: No module named jupyter
+Libraries imported successfully
+         country            city  ...  average_rental_value average_monthly_revenue
+0          Japan          Sasebo  ...                  3.71                   39.56
+1  United States  San Bernardino  ...                  4.77                   42.91
+2         Greece         Athenai  ...                  5.22                   45.25
+3        Myanmar        Myingyan  ...                  3.72                   40.89
+4         Taiwan          Nantou  ...                  3.81                   24.10
+
+[5 rows x 14 columns]
+Loading data into project-401f4646-3663-4125-aaa.reporting_db.rep_customers_ordered...
+Data successfully loaded to project-401f4646-3663-4125-aaa.reporting_db.rep_customers_ordered.
+Notebook conversion skipped or failed: Command '['python3', '-m', 'jupyter', 'nbconvert', 'rep_customers_ordered.ipynb', '--to', 'python', '--output-dir=../python/reporting']' returned non-zero exit status 1.
+✅ rep_customers_ordered.py completed.
+▶ Running rep_rentals_per_customer_and_period.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+/usr/bin/python3: No module named jupyter
+Libraries imported successfully
+  reporting_period reporting_date  customer_id  total_rentals
+0             Year     2022-01-01          148             46
+1             Year     2022-01-01          526             45
+2             Year     2022-01-01          144             42
+3             Year     2022-01-01          236             42
+4             Year     2022-01-01           75             41
+Loading data into project-401f4646-3663-4125-aaa.reporting_db.rep_rentals_per_customer_and_period...
+Data successfully loaded to project-401f4646-3663-4125-aaa.reporting_db.rep_rentals_per_customer_and_period.
+Notebook conversion skipped or failed: Command '['python3', '-m', 'jupyter', 'nbconvert', 'rep_rentals_per_customer_and_period.ipynb', '--to', 'python', '--output-dir=../python/reporting']' returned non-zero exit status 1.
+✅ rep_rentals_per_customer_and_period.py completed.
+▶ Running rep_rentals_per_period.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+/usr/bin/python3: No module named jupyter
+Libraries imported successfully
+  reporting_period reporting_date  total_rentals
+0             Year     2022-01-01          16044
+1            Month     2022-07-01           6739
+2            Month     2022-08-01           5656
+3            Month     2022-06-01           2311
+4            Month     2022-05-01           1156
+Loading data into project-401f4646-3663-4125-aaa.reporting_db.rep_rentals_per_period...
+Data successfully loaded to project-401f4646-3663-4125-aaa.reporting_db.rep_rentals_per_period.
+Notebook conversion skipped or failed: Command '['python3', '-m', 'jupyter', 'nbconvert', 'rep_rentals_per_period.ipynb', '--to', 'python', '--output-dir=../python/reporting']' returned non-zero exit status 1.
+✅ rep_rentals_per_period.py completed.
+▶ Running rep_revenue_per_customer_and_period.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+/usr/bin/python3: No module named jupyter
+Libraries imported successfully
+  reporting_period reporting_date  customer_id  total_revenue
+0             Year     2022-01-01          526         221.55
+1             Year     2022-01-01          148         216.54
+2             Year     2022-01-01          144         195.58
+3             Year     2022-01-01          178         194.61
+4             Year     2022-01-01          137         194.61
+Loading data into project-401f4646-3663-4125-aaa.reporting_db.rep_revenue_per_customer_and_period...
+Data successfully loaded to project-401f4646-3663-4125-aaa.reporting_db.rep_revenue_per_customer_and_period.
+Notebook conversion skipped or failed: Command '['python3', '-m', 'jupyter', 'nbconvert', 'rep_revenue_per_customer_and_period.ipynb', '--to', 'python', '--output-dir=../python/reporting']' returned non-zero exit status 1.
+✅ rep_revenue_per_customer_and_period.py completed.
+▶ Running rep_revenue_per_period.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+/usr/bin/python3: No module named jupyter
+Libraries imported successfully
+  reporting_period reporting_date  total_revenue
+0             Year     2022-01-01       67206.82
+1            Month     2022-07-01       28427.69
+2            Month     2022-08-01       23864.55
+3            Month     2022-06-01        9592.94
+4            Month     2022-05-01        4807.46
+Loading data into project-401f4646-3663-4125-aaa.reporting_db.rep_revenue_per_period...
+Data successfully loaded to project-401f4646-3663-4125-aaa.reporting_db.rep_revenue_per_period.
+Notebook conversion skipped or failed: Command '['python3', '-m', 'jupyter', 'nbconvert', 'rep_revenue_per_period.ipynb', '--to', 'python', '--output-dir=../python/reporting']' returned non-zero exit status 1.
+✅ rep_revenue_per_period.py completed.
+▶ Running rep_films_rented.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+/usr/bin/python3: No module named jupyter
+Libraries imported successfully
+   category_id category_name  ...  avg_order_revenue avg_monthly_revenue
+0           15        Sports  ...               1.37               13.24
+1            5        Comedy  ...               4.70               26.61
+2            5        Comedy  ...               6.17               57.57
+3            7         Drama  ...               2.41                9.63
+4           12         Music  ...               2.82                8.47
+
+[5 rows x 11 columns]
+Loading data into project-401f4646-3663-4125-aaa.reporting_db.rep_films_rented...
+Data successfully loaded to project-401f4646-3663-4125-aaa.reporting_db.rep_films_rented.
+Notebook conversion skipped or failed: Command '['python3', '-m', 'jupyter', 'nbconvert', 'rep_films_rented.ipynb', '--to', 'python', '--output-dir=../python/reporting']' returned non-zero exit status 1.
+✅ rep_films_rented.py completed.
+▶ Running rep_rental_details.py...
+/home/roxannekyr92/.local/lib/python3.12/site-packages/google/cloud/bigquery/table.py:2086: UserWarning: BigQuery Storage module not found, fetch data with the REST endpoint instead.
+  warnings.warn(
+/usr/bin/python3: No module named jupyter
+Libraries imported successfully
+   rental_id  store_id rental_date  ...  category_name total_rentals  total_revenue
+0      15415         1  2022-08-22  ...        Foreign             1          11.99
+1       4383         2  2022-07-07  ...            New             1          11.99
+2       3973         2  2022-07-06  ...    Documentary             1          11.99
+3       2166         2  2022-06-17  ...         Family             1          11.99
+4       8831         1  2022-07-29  ...          Drama             1          11.99
+
+[5 rows x 11 columns]
+Loading data into project-401f4646-3663-4125-aaa.reporting_db.rep_rental_details...
+Data successfully loaded to project-401f4646-3663-4125-aaa.reporting_db.rep_rental_details.
+Notebook conversion skipped or failed: Command '['python3', '-m', 'jupyter', 'nbconvert', 'rep_rental_details.ipynb', '--to', 'python', '--output-dir=../python/reporting']' returned non-zero exit status 1.
+✅ rep_rental_details.py completed.
+✅ All reporting scripts completed successfully!
