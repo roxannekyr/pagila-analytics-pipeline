@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[ ]:
 
 
 #!/usr/bin/env python
@@ -128,7 +128,7 @@ full_table_id = f"{project_id}.{dataset_id}.{table_id}"
 df['total_revenue'] = df['total_revenue'].astype('float64')
 
 # Exploring some records
-display(df.head())
+print(df.head())
 
 # Defining table schema based on the project description
 
@@ -145,9 +145,6 @@ schema = [
 ]
 
 # In[6]:
-
-# Creating a BigQuery client
-client = bigquery.Client(project=project_id)
 
 # Configuring the load job to always overwrite if the table exists, or creating if it doesn't
 job_config = bigquery.LoadJobConfig(
@@ -173,4 +170,10 @@ try:
     print("Notebook successfully converted.")
 except Exception as e:
     print(f"Notebook conversion skipped or failed: {e}")
+
+
+# In[ ]:
+
+
+
 
