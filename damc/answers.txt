@@ -6,13 +6,13 @@ Data Source : rep_revenue_per_period
 ------------------------------------
 
 Question 1 : % diff between May 22’ and June 22’ is 99,5%.
-Question 2 : Sunday
+Question 2 : Sunday with average revenue $1962.
 
 Data Source : rep_revenue_per_customer_and_period
 -------------------------------------------------
 
 Question 1 : Customer id: 454,178,176,26,526
-Question 2 :
+Question 2 : July 2022 is the first month achieving the most unique customers (599). 
 
 ===================================================================================================
 --------
