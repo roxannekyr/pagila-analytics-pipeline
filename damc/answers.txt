@@ -11,7 +11,7 @@ Question 2 : Sunday
 Data Source : rep_revenue_per_customer_and_period
 -------------------------------------------------
 
-Question 1 :
+Question 1 : Customer id: 454,178,176,26,526
 Question 2 :
 
 ===================================================================================================
