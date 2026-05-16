@@ -6,7 +6,7 @@ Data Source : rep_revenue_per_period
 ------------------------------------
 
 Question 1 : % diff between May 22’ and June 22’ is 99,5%.
-Question 2 : Thursday
+Question 2 : Sunday
 
 Data Source : rep_revenue_per_customer_and_period
 -------------------------------------------------
