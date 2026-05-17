@@ -156,6 +156,28 @@ docker run -d -p 3000:3000 --name metabase metabase/metabase
 ```
 
 ---
+---
+
+## Next Steps — Extended BI Visualizations
+
+Plan is to deepen the dashboard layer by exposing the full richness of the reporting marts currently underutilized in BI tools.
+
+**Rentals analysis** — Build views on top of `rep_rentals_per_period` and `rep_rentals_per_customer_and_period` to visualize rental volume trends alongside revenue, surfacing demand patterns independent of payment amounts.
+
+**Film performance** — Use `rep_films_rented` to rank titles by rental frequency, cross-referenced with category from the staging layer, enabling genre-level performance breakdowns.
+
+**Customer segmentation** — Combine `rep_customers_ordered` with per-customer revenue and rental marts to build RFM-style (Recency, Frequency, Monetary) views and identify high-value vs. churned customers.
+
+**Rental detail drillthrough** — Expose `rep_rental_details` as a drillthrough layer in Tableau so high-level trends can be investigated at the individual transaction level without leaving the dashboard.
+
+**Cross-mart blending** — Join revenue and rental marts to compute derived KPIs like revenue-per-rental and average rental duration per customer segment, currently not surfaced anywhere.
+
+The staging layer is already clean and reusable, so these additions are purely a reporting and visualization effort with no upstream changes needed.
+
+---
+
+<sub>Built with PostgreSQL · Google Datastream · BigQuery · Python · Tableau · Metabase · Git </sub>
+
 
 ## 📚 Project Management
 
