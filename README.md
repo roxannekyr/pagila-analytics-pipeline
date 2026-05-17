@@ -1,4 +1,4 @@
-- # Pagila End-to-End Analytics Pipeline
+# Pagila End-to-End Analytics Pipeline
 
 > **CDC-based analytics pipeline on Google Cloud — from an operational PostgreSQL database to executive dashboards in Tableau and Metabase.**
 
