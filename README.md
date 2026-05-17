@@ -6,7 +6,7 @@
 
 Click below to open the fully interactive dashboard — explore revenue trends, top customers, weekday patterns, and unique customer views, filter by period, hover over charts, and drill into the data.
 
-[![Open Dashboard](https://img.shields.io/badge/Open%20Dashboard-Live-brightgreen?style=for-the-badge&logo=tableau)](https://roxanikyritsi.github.io/pagila-analytics-pipeline/)
+[![Open Dashboard](https://img.shields.io/badge/Open%20Dashboard-Live-brightgreen?style=for-the-badge&logo=tableau)](https://roxannekyr.github.io/pagila-analytics-pipeline/)
 
 > Hosted via GitHub Pages · Powered by Tableau Public
 
