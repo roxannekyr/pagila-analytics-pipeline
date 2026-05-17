@@ -169,7 +169,7 @@ Plan is to deepen the DW with Medallion Architecture implementation & develop th
 
 ## Project Management
 
-Detailed course notes:
+Detailed project management can be found :
 - [Notion workspace — Pagila End-to-End Analytics Pipeline](https://www.notion.so/Pagila-End-to-End-Analytics-Pipeline-35cb6b0cb59080aeba2ae04c4283b6f8)
 
 This project was developed as the capstone for the **Data Analytics in Modern Corporate Business** programme at the **International Hellenic University**.
