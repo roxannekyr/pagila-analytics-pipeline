@@ -54,11 +54,6 @@ Interactive dashboard with date-period filters, revenue trend lines, weekday-ave
 ### Metabase
 Metabase runs locally via Docker and connects directly to BigQuery using a GCP service-account key. Each business question is answered as a standalone Metabase question.
 
-![Metabase Q1 — Revenue trend](docs/screenshots/metabase_q1_revenue_trend.png)
-![Metabase Q2 — Avg revenue per weekday](docs/screenshots/metabase_q2_weekday.png)
-![Metabase Q3 — Top 5 customers June 2022](docs/screenshots/metabase_q3_top5_customers.png)
-![Metabase Q4 — Unique customers per month](docs/screenshots/metabase_q4_unique_customers.png)
-
 ---
 
 ## 🗂️ Repository Structure
