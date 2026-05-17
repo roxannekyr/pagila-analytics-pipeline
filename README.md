@@ -21,7 +21,7 @@ The goal: demonstrate the full analytics engineering lifecycle — ingestion, mo
 
 ## Architecture
 
-![Pipeline Architecture](docs/architecture.png)
+![Pipeline Architecture](documents/architecture.png)
 
 | Stage | Tool | Purpose |
 |---|---|---|
