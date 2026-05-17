@@ -50,8 +50,6 @@ Click below to open the fully interactive dashboard — explore revenue trends, 
 ### Metabase
 Metabase runs locally via Docker and connects directly to BigQuery using a GCP service-account key. Each business question is answered as a standalone Metabase question.
 
-[![Dashboard Preview](documents/DAMC_Dashboard.png)](https://roxanikyritsi.github.io/pagila-analytics-pipeline/)
-
 ---
 
 ## Repository Structure
