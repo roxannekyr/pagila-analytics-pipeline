@@ -74,13 +74,13 @@ pagila-analytics-pipeline/
 │   │   ├── stg_staff.py
 │   │   └── stg_store.py
 │   └── reporting/                       # Aggregated reporting marts
-│       ├── rep_revenue_per_period.py
+│       ├──  rep_revenue_per_period.py
 │       ├──  rep_revenue_per_customer_and_period.py
         ├──  rep_rentals_per_customer_and_period.py
         ├──  rep_rentals_per_period.py
-        ├── rep_customers_ordered.py
-        ├── rep_films_rented.py
-        └──rep_rental_details.py
+        ├──  rep_customers_ordered.py
+        ├──  rep_films_rented.py
+        └──  rep_rental_details.py
 ├── job-orchestration/                   # Shell scripts + cron expressions
 │   └── run_staging.sh
 ├── damc/visualizations/                 # Tableau workbook + Metabase exports
