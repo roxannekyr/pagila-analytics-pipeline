@@ -2,17 +2,6 @@
 
 > **CDC-based analytics pipeline on Google Cloud — from an operational PostgreSQL database to executive dashboards in Tableau and Metabase.**
 
-## 🟢 Live Interactive Dashboard
-
-Click below to open the fully interactive dashboard — explore revenue trends, top customers, weekday patterns, and unique customer views, filter by period, hover over charts, and drill into the data.
-
-[![Open Dashboard](https://img.shields.io/badge/Open%20Dashboard-Live-brightgreen?style=for-the-badge&logo=tableau)](https://roxannekyr.github.io/pagila-analytics-pipeline/)
-
-> Hosted via GitHub Pages · Powered by Tableau Public
-
-## Dashboard Overview
-
-[![Dashboard Preview](documents/DAMC_Dashboard.png)](https://roxanikyritsi.github.io/pagila-analytics-pipeline/)
 ---
 
 ## Project Overview
@@ -44,19 +33,26 @@ The goal: demonstrate the full analytics engineering lifecycle — ingestion, mo
 
 ---
 
-## 📊 Dashboards
+## Dashboards
 
-### Tableau Public Dashboard
-Interactive dashboard with date-period filters, revenue trend lines, weekday-average bars, top-N customer tables, and unique-customer monthly bars.
+## 🟢 Tableau Public Live Interactive Dashboard
 
-🔗 **[Open in Tableau Public](https://public.tableau.com/app/profile/roxani.kyritsi/viz/DAMC_Dashboard_rk2/Dashboard?publish=yes)**
+Click below to open the fully interactive dashboard — explore revenue trends, top customers, weekday patterns, and unique customer views, filter by period, hover over charts, and drill into the data.
+
+[![Open Dashboard](https://img.shields.io/badge/Open%20Dashboard-Live-brightgreen?style=for-the-badge&logo=tableau)](https://roxannekyr.github.io/pagila-analytics-pipeline/)
+
+> Hosted via GitHub Pages · Powered by Tableau Public
+
+## Tableau Public Dashboard Preview
+
+[![Dashboard Preview](documents/DAMC_Dashboard.png)](https://roxanikyritsi.github.io/pagila-analytics-pipeline/)
 
 ### Metabase
 Metabase runs locally via Docker and connects directly to BigQuery using a GCP service-account key. Each business question is answered as a standalone Metabase question.
 
 ---
 
-## 🗂️ Repository Structure
+## Repository Structure
 
 ```
 pagila-analytics-pipeline/
@@ -95,7 +91,7 @@ pagila-analytics-pipeline/
 
 ---
 
-## 🧱 Methodology — Layered Data Modeling
+## Methodology — Layered Data Modeling
 
 Inspired by **dbt's recommended project structure**, the warehouse is organized into two clean layers (the intermediate layer is intentionally omitted to keep the scope focused):
 
@@ -162,28 +158,16 @@ docker run -d -p 3000:3000 --name metabase metabase/metabase
 ---
 ---
 
-## Next Steps — Extended BI Visualizations
+## Next Steps — Extended BI Visualizations & Medallion Architecture Implementation.
 
-Plan is to deepen the dashboard layer by exposing the full richness of the reporting marts currently underutilized in BI tools.
-
-**Rentals analysis** — Build views on top of `rep_rentals_per_period` and `rep_rentals_per_customer_and_period` to visualize rental volume trends alongside revenue, surfacing demand patterns independent of payment amounts.
-
-**Film performance** — Use `rep_films_rented` to rank titles by rental frequency, cross-referenced with category from the staging layer, enabling genre-level performance breakdowns.
-
-**Customer segmentation** — Combine `rep_customers_ordered` with per-customer revenue and rental marts to build RFM-style (Recency, Frequency, Monetary) views and identify high-value vs. churned customers.
-
-**Rental detail drillthrough** — Expose `rep_rental_details` as a drillthrough layer in Tableau so high-level trends can be investigated at the individual transaction level without leaving the dashboard.
-
-**Cross-mart blending** — Join revenue and rental marts to compute derived KPIs like revenue-per-rental and average rental duration per customer segment, currently not surfaced anywhere.
-
-The staging layer is already clean and reusable, so these additions are purely a reporting and visualization effort with no upstream changes needed.
+Plan is to deepen the DW with Medallion Architecture implementation & develop the dashboard layer by exposing the full richness of the reporting marts currently underutilized in BI tools.
 
 ---
 
 <sub>Built with PostgreSQL · Google Datastream · BigQuery · Python · Tableau · Metabase · Git </sub>
 
 
-## 📚 Project Management
+## Project Management
 
 Detailed course notes:
 - [Notion workspace — Pagila End-to-End Analytics Pipeline](https://www.notion.so/Pagila-End-to-End-Analytics-Pipeline-35cb6b0cb59080aeba2ae04c4283b6f8)
