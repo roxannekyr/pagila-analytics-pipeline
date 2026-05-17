@@ -2,8 +2,15 @@
 
 > **CDC-based analytics pipeline on Google Cloud — from an operational PostgreSQL database to executive dashboards in Tableau and Metabase.**
 
-🔗 **[View the live Tableau dashboard →](https://public.tableau.com/app/profile/roxani.kyritsi/viz/DAMC_Dashboard_rk2/Dashboard?publish=yes)**
+## 🟢 Live Interactive Dashboard
 
+Click below to open the fully interactive dashboard — explore revenue trends, top customers, weekday patterns, and unique customer views, filter by period, hover over charts, and drill into the data.
+
+[![Open Dashboard](https://img.shields.io/badge/Open%20Dashboard-Live-brightgreen?style=for-the-badge&logo=tableau)](https://roxanikyritsi.github.io/pagila-analytics-pipeline/)
+
+> Hosted via GitHub Pages · Powered by Tableau Public
+
+[![Dashboard Preview](documents/DAMC_Dashboard.png)](https://roxanikyritsi.github.io/pagila-analytics-pipeline/)
 ---
 
 ## Overview
