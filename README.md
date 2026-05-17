@@ -15,7 +15,7 @@ Click below to open the fully interactive dashboard — explore revenue trends, 
 [![Dashboard Preview](documents/DAMC_Dashboard.png)](https://roxanikyritsi.github.io/pagila-analytics-pipeline/)
 ---
 
-## Overview
+## Project Overview
 
 This project simulates a real-world analytics-engineering workflow for a fictional DVD-rental business (using the open-source **Pagila** PostgreSQL dataset). It implements a production-style pipeline that:
 
