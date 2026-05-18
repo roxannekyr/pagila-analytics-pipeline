@@ -43,7 +43,7 @@ Click below to open the fully interactive dashboard — explore revenue trends, 
 
 > Hosted via GitHub Pages · Powered by Tableau Public
 
-## Tableau Public Dashboard Preview
+## Dashboard Preview
 
 [![Dashboard Preview](documents/DAMC_Dashboard.png)](https://roxanikyritsi.github.io/pagila-analytics-pipeline/)
 
