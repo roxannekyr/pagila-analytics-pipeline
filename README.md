@@ -156,8 +156,6 @@ docker run -d -p 3000:3000 --name metabase metabase/metabase
 ```
 
 ---
----
-
 ## Next Steps — Extended BI Visualizations & Medallion Architecture Implementation.
 
 Plan is to deepen the DW with Medallion Architecture implementation & develop the dashboard layer by exposing the full richness of the reporting marts currently underutilized in BI tools.
